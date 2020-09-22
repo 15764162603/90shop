@@ -1,0 +1,111 @@
+<extend name="Public:base_new"/>
+<block name="title">用户组管理</block>
+<block name="content">
+    <span class="layui-breadcrumb">
+      <a href="/">首页</a>
+      <a><cite>用户组管理</cite></a>
+    </span>
+    <table class="layui-table">
+        <colgroup>
+            <col width="450">
+            <col width="650">
+        </colgroup>
+        <thead>
+        <tr>
+            <th colspan="4">
+                <a class="layui-btn layui-btn-sm" href="javascript:;" id="add" >添加用户组</a>
+            </th>
+        </tr>
+        </thead>
+        <thead>
+        <tr>
+            <th>用户组名</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <foreach name="data" item="v">
+            <tr>
+                <td>{$v['title']}</td>
+                <td>
+                    <a  style="margin-left: 10px" class="layui-btn layui-btn-xs edit" href="javascript:;" ruleId="{$v['id']}" ruleTitle="{$v['title']}">修改</a>
+
+                    <a style="margin-left: 10px" class="layui-btn layui-btn-xs layui-btn-danger"  href="javascript:if(confirm('确定删除？'))location='{:U('Admin/Rule/delete_group',array('id'=>$v['id']))}'">删除</a>
+
+                    <a  style="margin-left: 10px" class="layui-btn layui-btn-xs layui-btn-normal" href="{:U('Admin/Rule/rule_group',array('id'=>$v['id']))}">分配权限</a>
+
+                    <a style="margin-left: 10px" class="layui-btn layui-btn-xs layui-btn-warm"  href="{:U('Admin/Rule/check_user',array('group_id'=>$v['id']))}">添加成员</a>
+                </td>
+            </tr>
+        </foreach>
+        </tbody>
+    </table>
+    <div id="add_html" style="display: none;margin-top: 10px;">
+        <form class="layui-form" action="{:U('Admin/Rule/add_group')}" method="post">
+            <input type="hidden" name="pid" value="0">
+            <div class="layui-form-item">
+                <label class="layui-form-label">用户组名:</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="title" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button type="submit" class="layui-btn">添加</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div id="edit_html" style="display: none;margin-top: 10px;">
+        <form class="layui-form" action="{:U('Admin/Rule/edit_group')}" method="post">
+            <input type="hidden" name="id">
+            <div class="layui-form-item">
+                <label class="layui-form-label">用户组名:</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="title" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button type="submit" class="layui-btn">修改</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</block>
+<block name="js">
+    <script>
+        layui.use('layer', function() { //独立版的layer无需执行这一句
+            var $ = layui.jquery, layer = layui.layer; //独立版的layer无需执行这一句
+            $("#add").click(function () {
+                $("input[name='title']").val('');
+                layer.open({
+                    type: 1
+                    ,title:'添加用户组'
+                    ,content: $('#add_html')
+                    ,area: ['25%', '200px']
+                    ,shade: 0 //不显示遮罩
+                    ,yes: function(){
+                        layer.closeAll();
+                    }
+                });
+            })
+            $(".edit").click(function () {
+                var ruleId = $(this).attr('ruleId');
+                var ruletitle = $(this).attr('ruletitle');
+                $("input[name='id']").val(ruleId);
+                $("input[name='title']").val(ruletitle);
+                layer.open({
+                    type: 1
+                    ,title:'修改用户组'
+                    ,content: $('#edit_html')
+                    ,area: ['25%', '200px']
+                    ,shade: 0 //不显示遮罩
+                    ,yes: function(){
+                        layer.closeAll();
+                    }
+                });
+            })
+        })
+    </script>
+</block>

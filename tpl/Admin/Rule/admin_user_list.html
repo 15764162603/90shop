@@ -1,0 +1,41 @@
+<extend name="Public:base_new"/>
+<block name="title">用户组添加用户</block>
+<block name="content">
+    <span class="layui-breadcrumb">
+      <a href="/">首页</a>
+      <a><cite>管理员列表</cite></a>
+    </span>
+    <table class="layui-table">
+        <colgroup>
+            <col width="300">
+            <col width="300">
+            <col width="450">
+            <col width="650">
+        </colgroup>
+        <thead>
+        <tr>
+            <th colspan="4">
+                <a class="layui-btn layui-btn-sm" href="{:U('Admin/Rule/add_admin')}">添加管理员</a>
+            </th>
+        </tr>
+        </thead>
+        <thead>
+        <tr>
+            <th>用户名</th>
+            <th>用户组</th>
+            <th>手机号</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+            <foreach name="data" item="v">
+                <tr>
+                    <td>{$v['username']}</td>
+                    <td>{$v['title']}</td>
+                    <td>{$v['phone']}</td>
+                    <td><a style="margin-left: 10px" class="layui-btn layui-btn-xs" href="{:U('Admin/Rule/edit_admin',array('id'=>$v['id']))}">修改权限或密码</a></td>
+                </tr>
+            </foreach>
+        </tbody>
+    </table>
+</block>

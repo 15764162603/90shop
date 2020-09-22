@@ -1,0 +1,73 @@
+<extend name="Public:base_new"/>
+<block name="title"></block>
+<block name="content">
+    <span class="layui-breadcrumb">
+      <a href="/">首页</a>
+      <a><cite>添加管理员</cite></a>
+    </span>
+    <style>
+        .layui-form-item .layui-input-inline {
+            float: left;
+            width: 300px;
+            margin-right: 10px;
+        }
+    </style>
+    <a class="btn btn-info  btn-sm" href="{:U('Admin/Rule/admin_user_list')}">管理员列表</a>
+    <form class="layui-form" method="post">
+        <div class="layui-form-item" pane="">
+            <label class="layui-form-label">管理组:</label>
+            <div class="layui-input-block">
+                <foreach name="data" item="v">
+
+                    <input type="checkbox" name="group_ids[]" lay-skin="primary" title="{$v['title']}" checked="" value="{$v['id']}">
+
+                </foreach>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">姓名:</label>
+            <div class="layui-input-block">
+                <input type="text" name="username" lay-verify="web_link"  autocomplete="off" placeholder="姓名" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">手机号:</label>
+            <div class="layui-input-block">
+                <input type="text" name="phone" autocomplete="off" placeholder="手机号" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">邮箱:</label>
+            <div class="layui-input-block">
+                <input type="text" name="email" autocomplete="off" placeholder="邮箱" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">初始密码:</label>
+            <div class="layui-input-block">
+                <input type="text" name="password" autocomplete="off" placeholder="初始密码" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">状态:</label>
+            <div class="layui-input-block">
+                <input type="checkbox" checked="" name="status" lay-skin="switch" lay-filter="switchTest" lay-text="允许登录|禁止登录">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button type="submit" class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+    </form>
+</block>
+<block name="js">
+    <script>
+        layui.use(['layer', 'form'], function() { //独立版的layer无需执行这一句
+            var $ = layui.jquery, layer = layui.layer;
+            var form = layui.form;
+            form.render();
+        })
+    </script>
+</block>

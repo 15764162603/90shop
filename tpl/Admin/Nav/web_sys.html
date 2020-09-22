@@ -1,0 +1,64 @@
+<extend name="Public:base_new"/>
+<block name="title">站点配置</block>
+<block name="content">
+ <webuploadercss/>
+        <style>
+            .layui-form-item {
+                width: 50%;
+            }
+        </style>
+        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+            <legend>站点设置</legend>
+        </fieldset>
+
+        <form class="layui-form" action="{:U('Admin/Nav/web_sys_add')}" method="post">
+            <input type="hidden" name="inc_type" value="web_sys">
+            <div class="layui-form-item">
+                <label class="layui-form-label">电视用户:</label>
+                <div class="layui-input-block">
+                    <textarea placeholder="请输入内容" name="tv_text" class="layui-textarea">{$data.tv_text}</textarea>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">手机用户:</label>
+                <div class="layui-input-block">
+                    <textarea placeholder="请输入内容" name="mobile_text" class="layui-textarea">{$data.mobile_text}</textarea>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">周周赛:</label>
+                <div class="layui-input-block">
+                    <textarea placeholder="请输入内容" name="week_text" class="layui-textarea">{$data.week_text}</textarea>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">自由赛:</label>
+                <div class="layui-input-block">
+                    <textarea placeholder="请输入内容" name="zt_text" class="layui-textarea">{$data.zt_text}</textarea>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">拍摄要求:</label>
+                <div class="layui-input-block">
+                    <textarea placeholder="请输入内容" name="px_text" class="layui-textarea">{$data.px_text}</textarea>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">服装要求:</label>
+                <div class="layui-input-block">
+                    <textarea placeholder="请输入内容" name="fz_text" class="layui-textarea">{$data.fz_text}</textarea>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button type="submit" class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+            </div>
+        </form>
+</block>
+<block name="js">
+    <script>
+
+    </script>
+</block>

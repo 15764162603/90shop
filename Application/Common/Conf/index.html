@@ -1,0 +1,479 @@
+﻿﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>熊猫斗地主</title>
+    <link rel="stylesheet" href="__CDN__/assets/xiongmao/reset.css">
+    <link rel="stylesheet" href="__CDN__/assets/xiongmao/index.css">
+    <style>
+
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <header class="page-header">
+        <a href="{$site.downloadLink}" class="downloadLink">
+            <div class="header-bg" style="background: url('__CDN__{$site.head}') no-repeat top center;"></div>
+            <img src="__CDN__/uploads/img2/img11.png" alt="" class="header-bg-1">
+            <img src="__CDN__{$site.head2}" alt="" class="header-bg-2">
+        </a>
+    </header>
+    <div class="page-bg" style="background: url('__CDN__/uploads/images/bg.jpg') no-repeat top center;background-size: cover;">
+        <div class="wrap-content">
+            <div class="wrap-1">
+                <img src="__CDN__/uploads/img2/bn1.png" alt="">
+            </div>
+            <div class="wrap-2"  data-clipboard-action="copy" data-clipboard-target="#target" id="copy_btn">
+                <span class="text-1">添加熊猫好友ID即可获得<span class="text-2">8</span>元彩金</span>
+                <!-- 微信号 -->
+                <!--                联系方式{$site.contact}-->
+                <span class="text-3">ID:<span id="target">{$ids}</span></span>
+                <img src="__CDN__/uploads/images/Button_1.png" alt="">
+                <!--<a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=619699629" target="class">
+                    <img src="__CDN__/uploads/images/Button_1.png" alt="">
+                </a>-->
+            </div>
+            <div class="wrap-3">
+                <a href="{$downloadNow}" class="downloadNow">
+                    <img src="__CDN__/uploads/images/Button_2.png" alt="">
+                </a>
+            </div>
+            <div class="wrap-4">
+                <img src="__CDN__/uploads/images/Rotation.png" alt="">
+                <div class="list-wrap">
+                    <ul class="list" id="oul">
+                        {foreach $ylmdList as $ylmd}
+                        <li>
+                            <span>{$ylmd.hyzh}</span>
+                            <span>{$ylmd.yled}</span>
+                            <span>{$ylmd.yxlx}</span>
+                        </li>
+                        {/foreach}
+                    </ul>
+                    <ul class="list" id="oul2"></ul>
+                </div>
+            </div>
+            <div class="wrap-5">
+                <img src="__CDN__/uploads/images/img01.png" alt="">
+            </div>
+            <div class="wrap-6">
+             <span class="text-5">
+
+             <a href="http://wpa.qq.com/msgrd?v=3&uin={$qqId}&site=qq&menu=yes" target="class">代理咨询QQ:{$qqId}</a>
+             </span>
+                <img src="__CDN__/uploads/images/img02.png" alt="">
+            </div>
+            <div class="wrap-7">
+                <div class="wrap-title">
+                    <img src="__CDN__/uploads/images/title01.png" alt="">
+                </div>
+                <p class="wrap-text-1">
+                    人的一生总会面临很多机遇，但机遇是有代价的。有没有勇气迈出第一步，往往是人生的分水岭。<br>
+                    如果你想拥有从未有过的东西，那么你必须去做你从未做过的事。
+                </p>
+                <p class="wrap-text-2">
+                    机会就是：别人不知道你知道了，别人不明白你明白了，别人犹豫或不做而你果断地做了。<br>
+                    要善于把握关键时间，抓住关键的东西，好好把握，好好珍惜，才能成功。
+                </p>
+                <div class="wrap-table">
+                    <div class="table-tr">
+                        <div class="table-th">
+                            群成员
+                        </div>
+                        <div class="table-th">
+                            招商投标
+                        </div>
+                        <div class="table-th">
+                            可获扶持
+                        </div>
+                        <div class="table-th">
+                            每周次数
+                        </div>
+                    </div>
+                    <div class="table-tr">
+                        <div class="table-td">
+                            20+
+                        </div>
+                        <div class="table-td">
+                            20元
+                        </div>
+                        <div class="table-td">
+                            100元
+                        </div>
+                        <div class="table-td">
+                            3次
+                        </div>
+                    </div>
+                </div>
+                <p class="wrap-text-3">
+                    ★扶持范例：
+                </p>
+                <p class="wrap-text-4">
+                    例1：入门级招商扶持，群内需要达标20位+群成员，即可预约专员发送群福利红包，每次发送红包金额不可低于50元。
+                </p>
+                <p class="wrap-text-3">
+                    ★扶持详情：
+                </p>
+                <p class="wrap-text-4">
+                    1.扶持红包：达到扶持最低标准，招商通过转账指定账号即可获得相对应的扶持金额，该账号会以您的名义到您的群内给线下会员进行发放福利红包。<br>
+                    2.统计区间：每周一早上7点进行统计上周数据，申请到扶持后，当周必须使用完扶持红包，逾期自动清零。
+                </p>
+            </div>
+            <div class="wrap-8">
+                <img src="__CDN__/uploads/images/title03.png" class="title-img" alt="">
+
+                <form id="form">
+                    <div class="form-wrap">
+                        <div class="left">
+                            <div class="input-wrap">
+                                <label for="zsId">
+                                    <img src="__CDN__/uploads/images/img2/img17.png" alt="">
+                                </label>
+                                <input type="text" id="zsId" name="zsid" placeholder="请输入你的招商账号">
+                            </div>
+                            <div class="input-wrap">
+                                <label for="hyId">
+                                    <img src="__CDN__/uploads/images/img2/img18.png" alt="">
+                                </label>
+                                <input type="text" id="hyId" name="hyid" placeholder="请输入你的会员账号">
+                            </div>
+                            <div class="input-wrap">
+                                <label for="ltId">
+                                    <img src="__CDN__/uploads/images/img2/img19.png" alt="">
+                                </label>
+                                <input type="text" id="ltId" name="ltid" placeholder="请输入你的聊天ID">
+                            </div>
+                            <div class="input-wrap code-box">
+                                <label for="yzm">
+                                    <img src="__CDN__/uploads/images/img2/img20.png" alt="">
+                                </label>
+                                <input type="text" id="yzm">
+                                <canvas id="canvas" class="code-wrap" width="140" height="34"></canvas>
+                            </div>
+                            <p>温馨提示：提交后，请确保聊天ID保持在线，以便专员与您联系！</p>
+                        </div>
+                        <div class="right">
+                            <img src="__CDN__/uploads/images/jy.png" alt="">
+                            <div class="input-wrap">
+                            <textarea id="jy" name="jy" placeholder="附带建议、需求、附言、审批
+                            更易通过，不可超过100字。" cols="30"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-wrap-bottom">
+                            <div>
+                                <img src="__CDN__/uploads/images/img2/submitBtn.png" alt="" id="btn_submit">
+                            </div>
+                            <div>
+                                <img src="__CDN__/uploads/images/img2/shenpiBtn.png" alt="" id="btn_alert">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+            <div class="wrap-9">
+                <img src="__CDN__/uploads/images/img2/img22.png" alt="">
+                <div class="wrap-table">
+                    <div class="table-tr">
+                        <div class="table-th">
+                            一起游戏人数
+                        </div>
+                        <div class="table-th">
+                            游戏量
+                        </div>
+                        <div class="table-th">
+                            日福利工资
+                        </div>
+                    </div>
+                    {foreach $tableList as $table}
+                    <div class="table-tr">
+                        <div class="table-td">
+                            {$table.yxrs}
+                        </div>
+                        <div class="table-td">
+                            {$table.yxl}
+                        </div>
+                        <div class="table-td">
+                            {$table.flgz}
+                        </div>
+                    </div>
+                    {/foreach}
+                    <div class="table-tr">
+                        <div class="table-td">
+
+                        </div>
+                        <div class="table-td" style="color: #f9f90d;">
+                            无任何游戏限制
+                        </div>
+                        <div class="table-td">
+
+                        </div>
+                    </div>
+                </div>
+                <ul>
+                    <li>1.点击申请，审核人员会依据您昨日的数据为您派发昨日的福利工资到您的招商账号。</li>
+                    <li>2.会员与打码需双向达标，如不达标按双向达标给予派发工资，</li>
+                    <li>3.日福利工资与投标返点佣金可同时享有，无需打码可直接申请提现。</li>
+                    <li>4.每日统计区间未：北京时间（当日7:00）-（次日7::00）。</li>
+                </ul>
+            </div>
+            <div class="wrap-10">
+                <h1>热门评论</h1>
+                <div class="carousel">
+                    <div class="slide" id="slide">
+                        <div>
+                            <img src="__CDN__/uploads/images/Rotation2_1.png" alt="">
+                        </div>
+                        <div>
+                            <img src="__CDN__/uploads/images/Rotation2_2.png" alt="">
+                        </div>
+                        <div>
+                            <img src="__CDN__/uploads/images/Rotation2_3.png" alt="">
+                        </div>
+                        <div>
+                            <img src="__CDN__/uploads/images/Rotation2_4.png" alt="">
+                        </div>
+                        <div>
+                            <img src="__CDN__/uploads/images/Rotation2_5.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bottom">
+        <a href="{$downloadLink}" class="downloadLink">
+            <div class="bottom-bg" style="background: url(__CDN__{$site.bottom}) no-repeat top center;"></div>
+            <img src="__CDN__/uploads/images/img2/img32.png" alt="" class="bottom-bg-img">
+        </a>
+    </div>
+    <div class="bottom-1">
+        <a href="{$downloadLink}" class="downloadLink">
+            <img src="__CDN__/uploads/images/m_img02.png" alt="" >
+        </a>
+    </div>
+
+</div>
+</body>
+
+<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+<script src="__CDN__/assets/js/layer/layer.js"></script>
+<script src="https://cdn.jsdelivr.net/clipboard.js/1.5.12/clipboard.min.js"></script>
+
+<script type="text/javascript">
+    var dowlink = "{$site.downloadLinkIOS}";
+    var downow = "{$site.downloadNowIOS}";
+    window.onload = function(){
+        roll(50);
+        swiper();
+        draw();
+        if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+            alert(downow)
+            $('#downloadNow').attr('href','shoppeisong.php?addid='+value+'');
+            $(".downloadLink").attr("href",dowlink)
+            $("#downloadNow").attr("href",downow)
+        }
+        // else if (/(Android)/i.test(navigator.userAgent)) {
+        //     alert('Android')
+        // } else {
+        //     alert('pc')
+        // }
+    };
+
+    $("#btn_alert").click(function () {
+        layer.prompt({
+            title:'输入会员账号或招商账号查询',
+        },function(value,index){
+            $.ajax({
+                type: "POST",   //提交的方法
+                url:"index/index/selLog", //提交的地址
+                data:{data:value},// 序列化表单值
+                async: false,
+                success: function(data) {  //成功
+                    if (data['code'] == 200) {
+                        layer.open({
+                            type: 1,
+                            title: false,
+                            closeBtn: 4,
+                            shadeClose: true,
+                            skin: 'yourclass',
+                            content: '<div style="width: 100%;height: auto;overflow:hidden;">' +
+                                '<div style="width: 100%;text-align: center;font-size: 16px;height: 40px;line-height: 40px;background: #0a4b3e;color:#fff">熊猫招商部回复如下：</div>' +
+                                '<div style="width: 100%;display: flex;flex-direction: column;padding: 0 20px">' +
+                                '<div style="display: flex;"><p style="width: 55%;">您的审核结果：</p><p style="width: 50%;">'+data['data']['status']+'</p></div>' +
+                                '<div style="display: flex;"><p style="width: 40%;">回复内容：</p><p style="width: 50%;">'+data['data']['reply']+'</p></div></div>'+'</div>'
+                        });
+                    } else {
+                        alert(data['msg']);
+                    }
+                    return;
+                },
+                error: function(request) {  //失败的话
+                    console.log(request)
+                    alert("查询出错,请刷新页面重新查询");
+                }
+            });
+
+            // alert(value);
+            laker.close(index);
+        });
+    });
+
+    $("#btn_submit").click(function () {
+        $.ajax({
+            type: "POST",   //提交的方法
+            url:"index/index/res", //提交的地址
+            data:$('#form').serialize(),// 序列化表单值
+            async: false,
+            success: function(data) {  //成功
+                alert(data['msg']);
+                return;
+            },
+            error: function(request) {  //失败的话
+                alert("申请出错,请刷新页面重新提交");
+            }
+        });
+    });
+
+    // 列表滚动
+    function roll(t) {
+        var ul1 = document.getElementById("oul");
+        var ul2 = document.getElementById("oul2");
+        var ulbox = document.getElementsByClassName("list-wrap")[0];
+        ul2.innerHTML = ul1.innerHTML;
+        ulbox.scrollTop = 0; // 开始无滚动时设为0
+        var timer = setInterval(rollStart, t); // 设置定时器，参数t用在这为间隔时间（单位毫秒），参数t越小，滚动速度越快
+        // 鼠标移入div时暂停滚动
+        ulbox.onmouseover = function () {
+            clearInterval(timer);
+        }
+        // 鼠标移出div后继续滚动
+        ulbox.onmouseout = function () {
+            timer = setInterval(rollStart, t);
+        }
+    }
+    // 开始滚动函数
+    function rollStart() {
+        // 上面声明的DOM对象为局部对象需要再次声明
+        var ul1 = document.getElementById("oul");
+        var ul2 = document.getElementById("oul2");
+        var ulbox = document.getElementsByClassName("list-wrap")[0];
+        // 正常滚动不断给scrollTop的值+1,当滚动高度大于列表内容高度时恢复为0
+        if (ulbox.scrollTop >= ul1.scrollHeight) {
+            ulbox.scrollTop = 0;
+        } else {
+            ulbox.scrollTop++;
+        }
+    }
+
+    // 轮播图
+    function swiper() {
+        var slide = document.getElementById('slide');
+        var imgs = slide.getElementsByTagName('img');
+        var indexNum = 0;
+        // 创建个新的li，里面包含第一个li的内容
+        var ofst = document.createElement('img');
+        ofst.src = imgs[0].src;
+        // 将新的li添加到ul里
+        slide.appendChild(ofst);
+        // 获取当前最新的长度
+        var liLens = imgs.length;
+
+        function sclNews() {
+            var imgW = 980; // 图片宽度
+            if (document.body.clientWidth <= 767) {
+                imgW = 300
+            } else if (document.body.clientWidth <= 768) {
+                imgW = 738
+            }
+
+            indexNum++;
+            //判定是否到达最后行
+            if (indexNum < liLens) {
+                slide.style.transition = "transform .5s ease-in"; //添加css过渡时的效果
+                // 每次滚动的距离是 单行高*行数
+                slide.style.transform = "translateX(-" + imgW * indexNum + "px)";
+            } else {
+                indexNum = 0;
+                slide.style.transition = ""; //去除css过渡效果
+                slide.style.transform = "translateX(-" + imgW * indexNum + "px)";
+                // 当从列表底部回到头部时，立马切换到第二个li，预留了100毫秒给js处理，所以这里花费的总时间是1900ms
+                setTimeout(function() {
+                    indexNum = 1;
+                    slide.style.transition = "transform .5s ease-in";
+                    slide.style.transform = "translateX(-" + imgW * indexNum + "px)";
+                }, 100)
+            }
+        }
+        // 每隔1800ms执行
+        setInterval(sclNews, 3000)
+    }
+
+    document.getElementById('canvas').onclick = function () {
+        draw();
+    };
+    function randomRgbColor() { //随机生成RGB颜色
+        var r = Math.floor(Math.random() * 256); //随机生成256以内r值
+        var g = Math.floor(Math.random() * 256); //随机生成256以内g值
+        var b = Math.floor(Math.random() * 256); //随机生成256以内b值
+        return "rgb(" + r + "," + g + "," + b + ")"; //返回rgb(r,g,b)格式颜色
+    }
+
+    function draw(){
+        var canvas = document.getElementById("canvas");
+        var context = canvas.getContext("2d");
+        canvas.width = 120;
+        canvas.height = 40;
+        context.strokeRect(0, 0, 120, 40);
+        var aCode = "A,B,C,E,F,G,H,J,K,L,M,N,P,Q,R,S,T,W,X,Y,1,2,3,4,5,6,7,8,9";
+        var aLength = aCode.split(",").length;
+        for (var i = 0; i <= 3; i++) {
+            var x = 20 + i * 20;
+            var y = 20 + Math.random() * 10;
+            var j = Math.floor(Math.random() * aLength);
+            var deg = Math.random() * 90 * Math.PI / 180;//随机弧度
+            var txt = aCode.split(",")[j];
+            context.fillStyle = randomRgbColor();
+            context.font = "bold 20px 微软雅黑";
+            //修改坐标原点和旋转角度
+            context.translate(x, y);
+            context.rotate(deg);
+            context.fillText(txt, 0, 0);
+            //恢复坐标原点和旋转角度
+            context.rotate(-deg);
+            context.translate(-x, -y);
+        }
+        //干扰线
+        for (var i = 0; i < 8; i++) {
+            context.strokeStyle = randomRgbColor();
+            context.beginPath();
+            context.moveTo(Math.random() * 120, Math.random() * 40);
+            context.lineTo(Math.random() * 120, Math.random() * 40);
+            context.stroke();
+        }
+        /**绘制干扰点**/
+        for (var i = 0; i < 20; i++) {
+            context.fillStyle = randomRgbColor();
+            context.beginPath();
+            context.arc(Math.random() * 120, Math.random() * 40, 1, 0, 2 * Math.PI);
+            context.fill();
+        }
+    }
+
+</script>
+<script>
+    $(document).ready(function(){
+        var clipboard = new Clipboard('#copy_btn');
+        clipboard.on('success', function(e) {
+            alert("微信号复制成功",1500);
+            window.location.href='weixin://';
+            e.clearSelection();
+        });
+    });
+</script>
+</html>

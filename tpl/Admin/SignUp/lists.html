@@ -1,0 +1,112 @@
+<extend name="Public:base_new"/>
+<block name="title">账户列表</block>
+<block name="content">
+    <span class="layui-breadcrumb">
+        <a href="/">首页</a>
+        <a><cite>报名管理</cite></a>
+        <a><cite>报名列表</cite></a>
+    </span>
+    <table class="layui-table" id="test">
+        <thead>
+        <tr>
+            <th colspan="9">
+                <style>
+                    .layui-form-item {
+                        margin-left: -30px;
+                        margin-bottom: 0;
+                    }
+                    .layui-form-item .layui-inline {
+                        margin-bottom: 5px;
+                        margin-right: 0px;
+                    }
+                    .current{
+                        background-color: #009688!important;
+                    }
+
+                </style>
+                <form class="layui-form" action="">
+                    <div class="layui-form-item">
+                        <div class="layui-inline">
+                            <label class="layui-form-label">队伍名称</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="team_name" class="layui-input" value="{$team_name}">
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <label class="layui-form-label">领队姓名</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="team_leader_name" class="layui-input" value="{$team_leader_name}">
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <label class="layui-form-label">领队电话</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="team_leader_mobile" class="layui-input" value="{$team_leader_mobile}">
+                            </div>
+                        </div>
+
+                        <div class="layui-inline">
+                            <button type="submit" class="layui-btn ">搜索</button>
+                        </div>
+                    </div>
+                </form>
+                <a href="{:U('Admin/Phone/excel',array('type'=>'1'))}" class="layui-btn layui-btn-sm">一键导出</a>
+            </th>
+        </tr>
+        </thead>
+        <thead>
+            <tr>
+            <td>
+                <input type="checkbox" id="selectAll" lay-skin="primary">
+            </td>
+            <th>队伍名称</th>
+            <th>领队姓名</th>
+            <th>领队电话</th>
+            <th>领队身份证号</th>
+            <th>所在城市及区域</th>
+            <th>视频地址</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody id="checks">
+        <foreach name="data" item="v">
+            <tr>
+                <td>
+                    <input type="checkbox" name="check" lay-skin="primary" value="{$v['id']}">
+                </td>
+                <td>{$v['team_name']}</td>
+                <td>{$v['team_leader_name']}</td>
+                <td>{$v['team_leader_mobile']}</td>
+                <td>{$v['team_leader_card']}</td>
+                <td>{$v['city']}-{$v['area']}</td>
+                <td>{$v['video_url']}</td>
+                <td>{$v['add_time']}</td>
+                <td>
+                    <a style="margin-left: 10px" class="layui-btn layui-btn-xs" href="{:U('Admin/SignUp/download',array('id'=>$v['id']))}">下载</a>
+                </td>
+            </tr>
+        </foreach>
+        </tbody>
+    </table>
+
+    <div class="layui-box layui-laypage layui-laypage-default">{$page}</div>
+</block>
+<block name="js">
+    <script>
+        layui.use(['layer', 'form'], function() { //独立版的layer无需执行这一句
+            var $ = layui.jquery, layer = layui.layer;
+            var i=0;
+            //全选
+            $("#selectAll").on("click",function(){
+                if(i==0){
+                    //把所有复选框选中
+                    $("#test td :checkbox").prop("checked", true);
+                    i=1;
+                }else{
+                    $("#test td :checkbox").prop("checked", false);
+                    i=0;
+                }
+            });
+        })
+    </script>
+</block>

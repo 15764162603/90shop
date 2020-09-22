@@ -1,0 +1,124 @@
+body {
+    background-color: #f1f1f1;
+    font-family: PingFangSC-Regular,sans-serif;
+}
+
+::-webkit-input-placeholder {
+    color: #999;
+}
+
+:-moz-placeholder, ::-moz-placeholder {
+    color: #999;
+}
+
+:-ms-input-placeholder {
+    color: #999;
+}
+
+.container {
+    margin-top: .86rem;
+}
+
+.require{
+        color: red;
+    margin-right: 0.2rem;
+}
+
+    .container input[type=text] {
+        font-size: .897rem;
+        height: 3.093rem;
+        text-align: right;
+        margin-right: 1.7rem;
+        color: #999;
+    }
+
+    .container .query-item {
+        background-color: #fff;
+        border-bottom: 1px solid #f7f7f7;
+        color: #999;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        height: 3.071rem;
+        line-height: 3.071rem;
+    }
+
+        .container .query-item .weui-cell__bd {
+            text-align: right;
+            width: 10rem;
+        }
+
+            .container .query-item .weui-cell__bd p {
+                text-overflow: ellipsis;
+                overflow: hidden;
+                    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    line-height: initial;
+            }
+
+        .container .query-item .item-title {
+            padding: 0 10px;
+            width: 20rem;
+            text-align: left;
+            font-size: .897rem;
+            display: inline-block;
+            color: #333;
+        }
+
+        .container .query-item .weui-cell_access {
+            width: 100%;
+        }
+
+            .container .query-item .weui-cell_access p {
+                font-size: .897rem;
+                text-align: right;
+            }
+
+        .container .query-item:last-child {
+            border-bottom: 0;
+        }
+
+.weui-cell:before {
+    border: 0;
+    color: #999;
+}
+
+.ensure_btn {
+    background-color: #ff4b66;
+    margin: .69rem 2%;
+}
+
+.container .interval {
+    background-color: #f1f1f1;
+    height: 2.07rem;
+    line-height: 2.07rem;
+    color: #999;
+}
+
+    .container .interval .interval-info {
+        padding: 0 10px;
+        font-size: .76rem;
+    }
+
+.container .person-icon {
+    height: 3.45rem;
+    line-height: 3.45rem;
+}
+
+    .container .person-icon > div {
+        flex: 1;
+    }
+
+    .container .person-icon .item-icon {
+        text-align: right;
+        margin-right: 1.7rem;
+    }
+
+        .container .person-icon .item-icon img {
+            vertical-align: middle;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
+            overflow: hidden;
+        }

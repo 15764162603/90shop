@@ -1,0 +1,47 @@
+<extend name="Public:base_new"/>
+<block name="title">修改密码</block>
+<block name="css">
+    <icheckcss/>
+</block>
+<block name="content">
+    <span class="layui-breadcrumb">
+        <a href="/">首页</a>
+        <a><cite>系统管理</cite></a>
+        <a><cite>修改密码</cite></a>
+    </span>
+    <div class="col-xs-12">
+        <div class="tabbable">
+            <div class="tab-content">
+                <form class="form-inline" method="post">
+                  <input type="hidden" name="id" value="{$user_data['id']}">
+                    <table class="table table-striped table-bordered table-hover table-condensed">
+                        <tr>
+                            <th>登录名</th>
+                            <td><input class="input-medium" type="text" name="username"
+                                       value="{$user_data['username']}"></td>
+                        </tr>
+                        <tr>
+                            <th>手机号</th>
+                            <td><input class="input-medium" type="text" name="phone" value="{$user_data['phone']}"></td>
+                        </tr>
+                        <tr>
+                            <th>邮箱</th>
+                            <td><input class="input-medium" type="text" name="email" value="{$user_data['email']}"></td>
+                        </tr>
+                        <tr>
+                            <th>初始密码</th>
+                            <td><input class="input-medium" type="text" name="password">如不改密码；留空即可</td>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <td><input class="btn btn-success" type="submit" value="修改"></td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="js">
+    <icheckjs color="blue"/>
+</block>

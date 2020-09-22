@@ -1,0 +1,86 @@
+<extend name="Public:base_new"/>
+<block name="title">底部菜单添加编辑</block>
+<block name="content">
+    <div class="page-header">
+        <ul class="breadcrumb">
+            <li><i class="fa fa-home"></i> 首页</li>
+            <li>用户管理</li>
+            <li>修改用户</li>
+        </ul>
+    </div>
+    <webuploadercss/>
+   
+    <div class="col-xs-12">
+        <div class="tab-content">
+            <form id="bjy-form" class="form-inline" action="{:U('Admin/User/user_save')}" method="post">
+                <if condition="$types eq 'edit' ">
+                    <input type="hidden" name="id"   value="{$data['id']}">
+                    <input type="hidden" name="type" value="edit">
+                </if>
+                <if condition="$types eq 'add' ">
+                    <input type="hidden" name="type" value="add">
+                </if>
+
+                <table class="table table-striped table-bordered table-hover table-condensed">
+                    <tr>
+                        <th>账户编号：</th>
+                        <td><input class="input-large" type="text" name="bianhao" value="{$data['bianhao']}" required></td>
+                    </tr>
+                    <tr>
+                        <th>身份证号：</th>
+                        <td><input class="input-large" type="text" name="card" value="{$data['card']}" required></td>
+                    </tr>
+                    <tr>
+                        <th >单位名称：</th>
+                        <td><input class="input-large" type="text" name="name" value="{$data['name']}" required></td>
+                    </tr>
+                    <tr>
+                        <th >开户时间：</th>
+                        <td><input class="input-large" type="text" id="addtime" name="kaihu_addtime" value="{$data['kaihu_addtime']}" required></td>
+                    </tr>
+                    <tr>
+                        <th >缴存基数：</th>
+                        <td><input class="input-large" type="text" name="jiaocun_money" value="{$data['jiaocun_money']}" required></td>
+                    </tr>
+                    <tr>
+                        <th >账户余额：</th>
+                        <td><input class="input-large" type="text"  name="total_money" value="{$data['total_money']}" required></td>
+                    </tr>
+                    <tr>
+                        <th>账户状态：</th>
+                        <td>
+                            <div class="radio">
+                                <label>
+                                    <input name="status" type="radio" class="ace" value="1" checked="checked">
+                                    <span class="lbl">正常</span>
+                                </label>
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                <label>
+                                    <input name="status" type="radio"  class="ace" value="0">
+                                    <span class="lbl">封禁</span>
+                                </label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <td><input class="btn btn-info  btn-sm" type="submit" value="提交"></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+</block>
+<block name="js">
+
+    <script>
+        layui.use('laydate', function() {
+            var laydate = layui.laydate;
+            //常规用法
+            laydate.render({
+                elem: '#addtime'
+                ,format: 'yyyy年MM月dd日'
+            });
+        });
+    </script>
+</block>

@@ -1,0 +1,178 @@
+<extend name="Public:base_new"/>
+<block name="title">菜单管理</block>
+<block name="content">
+    <span class="layui-breadcrumb">
+      <a href="/">首页</a>
+      <a><cite>菜单管理</cite></a>
+    </span>
+    <style>
+        .layui-form-item .layui-input-inline {
+            float: left;
+            width: 300px;
+            margin-right: 10px;
+        }
+    </style>
+    <div class="layui-form">
+        <form class="" action="{:U('Admin/Nav/order')}" method="post" style="margin-top: 5px;">
+            <table class="layui-table">
+                <colgroup>
+                    <col width="80">
+                    <col width="350">
+                    <col width="450">
+                    <col width="650">
+                </colgroup>
+                <thead>
+                <tr>
+                    <th colspan="4">
+                        <a class="layui-btn layui-btn-sm" href="javascript:;" id="add" >添加菜单</a>
+                        <input class="layui-btn layui-btn-sm" type="submit" value="排序">
+                    </th>
+                </tr>
+                </thead>
+                <thead>
+                <tr>
+                    <th>排序</th>
+                    <th>菜单名</th>
+                    <th>链接</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <foreach name="data" item="v">
+                    <tr>
+                        <td>
+                            <input class="layui-input" type="text" name="{$v['id']}" value="{$v['order_number']}">
+                        </td>
+                        <td>{$v['_name']}</td>
+                        <td>{$v['mca']}</td>
+                        <td>
+                            <a  class="layui-btn layui-btn-xs add_zi" href="javascript:;" navId="{$v['id']}" navName="{$v['name']}">添加子菜单</a>
+                            <a  class="layui-btn layui-btn-normal layui-btn-xs edit" href="javascript:;" navId="{$v['id']}" navName="{$v['name']}" navMca="{$v['mca']}" navIco="{$v['ico']}">修改</a>
+                            <a  class="layui-btn layui-btn-danger layui-btn-xs"  href="javascript:if(confirm('确定删除？'))location='{:U('Admin/Nav/delete',array('id'=>$v['id']))}'">删除</a>
+                        </td>
+                    </tr>
+                </foreach>
+                </tbody>
+            </table>
+        </form>
+    </div>
+    <div id="add_html" style="display: none;margin-top: 10px;">
+        <form id="bjy-form" class="layui-form" action="{:U('Admin/Nav/add')}" method="post">
+            <input type="hidden" name="pid" value="0">
+            <div class="layui-form-item">
+                <label class="layui-form-label">菜单名:</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="name" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">链接:</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="mca" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+                    <span class="layui-breadcrumb"><a><cite>例: Admin/Nav/index</cite></a></span>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">图标:</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="ico" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+                    <span class="layui-breadcrumb"><a><cite>例: layui-icon- 要填写的图标</cite></a></span>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button type="submit" class="layui-btn">添加</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div id="edit_html" style="display: none;margin-top: 10px;">
+        <form  class="layui-form" action="{:U('Admin/Nav/edit')}" method="post">
+            <input type="hidden" name="id" value="0">
+            <div class="layui-form-item">
+                <label class="layui-form-label">菜单名:</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="name" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">链接:</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="mca" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+                    <span class="layui-breadcrumb"><a><cite>例: Admin/Nav/index</cite></a></span>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">图标:</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="ico" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+                    <span class="layui-breadcrumb"><a><cite>例: layui-icon- 要填写的图标</cite></a></span>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button type="submit" class="layui-btn">修改</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</block>
+<block name="js">
+    <script>
+        layui.use('layer', function() { //独立版的layer无需执行这一句
+            var $ = layui.jquery, layer = layui.layer; //独立版的layer无需执行这一句
+            $("#add").click(function () {
+                $("input[name='name'],input[name='mca']").val('');
+                $("input[name='pid']").val(0);
+                layer.open({
+                    type: 1
+                    ,title:'添加菜单'
+                    ,content: $('#add_html')
+                    ,area: ['25%', '350px']
+                    ,shade: 0 //不显示遮罩
+                    ,yes: function(){
+                        layer.closeAll();
+                    }
+                });
+            })
+            $(".add_zi").click(function () {
+                var navId = $(this).attr('navId');
+                console.log(navId)
+                $("input[name='pid']").val(navId);
+                $("input[name='name']").val('');
+                $("input[name='mca']").val('');
+                $("input[name='ico']").val('');
+                layer.open({
+                    type: 1
+                    ,title:'添加子菜单'
+                    ,content: $('#add_html')
+                    ,area: ['25%', '350px']
+                    ,shade: 0 //不显示遮罩
+                    ,yes: function(){
+                        layer.closeAll();
+                    }
+                });
+            })
+            $(".edit").click(function () {
+                var navId   = $(this).attr('navId');
+                var navName = $(this).attr('navName');
+                var navMca  = $(this).attr('navMca');
+                var navIco  = $(this).attr('navIco');
+                $("input[name='id']").val(navId);
+                $("input[name='name']").val(navName);
+                $("input[name='mca']").val(navMca);
+                $("input[name='ico']").val(navIco);
+                layer.open({
+                    type: 1
+                    ,title:'修改菜单'
+                    ,content: $('#edit_html')
+                    ,area: ['25%', '350px']
+                    ,shade: 0 //不显示遮罩
+                    ,yes: function(){
+                        layer.closeAll();
+                    }
+                });
+            })
+        })
+    </script>
+</block>

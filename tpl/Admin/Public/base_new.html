@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>
+        <block name="title"></block>
+    </title>
+    <script src="/public/statics/layui/layui.js"></script>
+    <link rel="stylesheet" href="/public/statics/layui/css/layui.css">
+</head>
+<body class="layui-layout-body">
+    <div class="layui-layout layui-layout-admin">
+    <div class="layui-header">
+        <div class="layui-logo">
+            <i class="layui-icon layui-icon-tree"></i>管理后台
+        </div>
+        <!-- 头部区域（可配合layui已有的水平导航） -->
+        <!--<ul class="layui-nav layui-layout-left">-->
+            <!--<li class="layui-nav-item"><a href="">控制台</a></li>-->
+            <!--<li class="layui-nav-item"><a href="">商品管理</a></li>-->
+            <!--<li class="layui-nav-item"><a href="">用户</a></li>-->
+            <!--<li class="layui-nav-item">-->
+                <!--<a href="javascript:;">其它系统</a>-->
+                <!--<dl class="layui-nav-child">-->
+                    <!--<dd><a href="">邮件管理</a></dd>-->
+                    <!--<dd><a href="">消息管理</a></dd>-->
+                    <!--<dd><a href="">授权管理</a></dd>-->
+                <!--</dl>-->
+            <!--</li>-->
+        <!--</ul>-->
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item">
+                <a href="javascript:;">
+                    <img src="{$_SESSION['user']['avatar']}" class="layui-nav-img">
+                    欢迎光临,{$_SESSION['user']['username']}
+                </a>
+                <!--<dl class="layui-nav-child">-->
+                <!--<dd><a href="">基本资料</a></dd>-->
+                <!--<dd><a href="">安全设置</a></dd>-->
+                <!--</dl>-->
+            </li>
+            <li class="layui-nav-item">
+                <a href="{:U('Home/Index/logout')}">退了</a>
+            </li>
+        </ul>
+    </div>
+    <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+            <ul class="layui-nav layui-nav-tree"  lay-filter="test">
+                <foreach name="nav_data" item="v">
+                    <empty name="v['_data']">
+                        <li class="layui-nav-item layui-nav-itemed">
+                            <a href="{:U($v['mca'])}" lay-tips="{$v['name']}" lay-direction="2">
+                                <i class="layui-icon layui-icon-{$v['ico']}"></i>
+                                <cite>{$v['name']}</cite>
+                                <span class="layui-nav-more"></span>
+                            </a>
+                        </li>
+                        <else/>
+                        <li class="layui-nav-item <if condition=" (CONTROLLER_NAME) eq $v['controller_name']">layui-nav-itemed</if>">
+                            <a href="javascript:;" lay-tips="{$v['name']}" lay-direction="2">
+                                <i class="layui-icon layui-icon-{$v['ico']}"></i>
+                                <cite>{$v['name']}</cite>
+                                <span class="layui-nav-more"></span>
+                            </a>
+                            <dl class="layui-nav-child">
+                                <foreach name="v['_data']" item="n">
+                                    <dd class="<if condition=" (MODULE_NAME.'/'.CONTROLLER_NAME.'/'.ACTION_NAME) eq $n['mca']">layui-this</if>"><a href="{:U($n['mca'])}">{$n['name']}</a></dd>
+                                </foreach>
+                            </dl>
+                        </li>
+
+                    </empty>
+                </foreach>
+            </ul>
+        </div>
+    </div>
+    <div class="layui-body">
+        <!-- 内容主体区域 -->
+        <div style="padding: 15px;">
+            <block name="content"></block>
+        </div>
+    </div>
+    <div class="layui-footer">
+        <!-- 底部固定区域 -->
+        © 版权所有
+    </div>
+</div>
+    <script src="__PUBLIC__/statics/js/jquery-1.10.2.min.js"></script>
+    <script>
+        layui.use('element', function(){
+            var element = layui.element;
+        });
+    </script>
+    <block name="js"></block>
+
+</body>
+</html>

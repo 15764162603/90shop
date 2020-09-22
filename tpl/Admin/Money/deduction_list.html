@@ -1,0 +1,102 @@
+<extend name="Public:base_new"/>
+<block name="title">账户列表</block>
+<block name="content">
+    <span class="layui-breadcrumb">
+        <a href="/">首页</a>
+        <a><cite>资金管理</cite></a>
+        <a><cite>扣费列表</cite></a>
+    </span>
+    <table class="layui-table">
+        <style>
+            .layui-form-item {
+                margin-left: -30px;
+                margin-bottom: 0;
+            }
+            .layui-form-item .layui-inline {
+                margin-bottom: 0px;
+                margin-right: 0px;
+            }
+            .current{
+                background-color: #009688!important;
+            }
+
+        </style>
+        <thead>
+            <tr>
+                <th colspan="8">
+                    <form class="layui-form" action="">
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label">用户账号</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="username" class="layui-input" value="{$username}">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label">开始时间</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="start_time" class="layui-input" id="start_time"  value="{$start_time}" placeholder="开始时间(修改时间)">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label">结束时间</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="end_time" class="layui-input" id="end_time"  value="{$end_time}" placeholder="结束时间(修改时间)">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <button type="submit" class="layui-btn ">搜索</button>
+                            </div>
+                        </div>
+                    </form>
+                </th>
+            </tr>
+        </thead>
+        <thead>
+        <tr>
+            <th colspan="8" style="color: red;text-align: center;">
+                余额统计：{$money_sum}
+            </th>
+        </tr>
+        </thead>
+        <thead>
+            <tr>
+                <th>流水ID</th>
+                <th>用户账号</th>
+                <th>功能类型</th>
+                <th>操作qq号码</th>
+                <th>支付费用</th>
+                <th>流水时间</th>
+            </tr>
+        </thead>
+        <tbody>
+            <foreach name="data" item="v">
+                <tr>
+                    <td>{$v['id']}</td>
+                    <td>{$v['username']}</td>
+                    <td>{$v['opname']}</td>
+                    <td>{$v['opqq']}</td>
+                    <td>{$v['price']}</td>
+                    <td>{$v['create_time']|date='Y-m-d H:i',###}</td>
+                </tr>
+            </foreach>
+        </tbody>
+    </table>
+    <div class="layui-box layui-laypage layui-laypage-default">{$page}</div>
+</block>
+<block name="js">
+    <script>
+        layui.use(['form', 'layer', 'laydate'], function(){
+            var $ = layui.jquery,form = layui.form,layer = layui.layer;
+            var laydate = layui.laydate;
+            //常规用法
+            laydate.render({
+                elem: '#start_time'
+            });
+            laydate.render({
+                elem: '#end_time'
+            });
+        })
+
+    </script>
+</block>

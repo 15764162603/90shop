@@ -1,0 +1,137 @@
+<extend name="Public:base_new"/>
+<block name="title">账户列表</block>
+<block name="content">
+    <span class="layui-breadcrumb">
+        <a href="/">首页</a>
+        <a><cite>资金管理</cite></a>
+        <a><cite>卡密列表</cite></a>
+    </span>
+    <table class="layui-table">
+        <thead>
+            <tr>
+                <th colspan="8">
+                    <a class="layui-btn layui-btn-sm" href="javascript:;" id="add" >添加卡密</a>
+                </th>
+            </tr>
+            <tr>
+                <th colspan="8">
+                    <form class="layui-form" action="">
+                        <div class="layui-form-item">
+                            <div class="layui-inline" style="margin-left:0;">
+                                <div class="layui-input-inline">
+                                    <select name="isused"  lay-search="">
+                                        <option value="3">选择状态</option>
+                                        <option value="1" <if condition="$isused  eq  1">selected</if>>未使用</option>
+                                        <option value="2" <if condition="$isused  eq  2">selected</if>>已使用</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label">开始时间</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="start_time" class="layui-input" id="start_time"  value="{$start_time}" placeholder="开始时间(修改时间)">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label">结束时间</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="end_time" class="layui-input" id="end_time"  value="{$end_time}" placeholder="结束时间(修改时间)">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <button type="submit" class="layui-btn ">搜索</button>
+                            </div>
+                        </div>
+
+                    </form>
+                </th>
+            </tr>
+        </thead>
+        <thead>
+            <tr>
+                <th colspan="8" style="color: red;text-align: center;">
+                    余额统计：{$money_sum}
+                </th>
+            </tr>
+        </thead>
+        <thead>
+            <tr>
+                <th>卡密ID</th>
+                <th>卡号</th>
+                <th>密码</th>
+                <th>金额</th>
+                <th>状态</th>
+                <th>发布时间</th>
+                <th>使用账户</th>
+                <th>使用时间</th>
+            </tr>
+        </thead>
+        <tbody>
+            <foreach name="data" item="v">
+                <tr>
+                    <td>{$v['card_id']}</td>
+                    <td>{$v['card_no']}</td>
+                    <td>{$v['card_no']}</td>
+                    <td>{$v['card_price']}</td>
+                    <td>{$v['isused']}</td>
+                    <td>{$v['create_time']|date='Y-m-d H:i',###}</td>
+                    <td>{$v['username']}</td>
+                    <td>{$v['end_time']|date='Y-m-d H:i',###}</td>
+                </tr>
+            </foreach>
+        </tbody>
+    </table>
+    <div class="layui-box layui-laypage layui-laypage-default">{$page}</div>
+    <div id="add_html" style="display: none;margin-top: 10px;">
+        <form id="bjy-form" class="layui-form" action="{:U('Admin/Money/carmi_save')}" method="post">
+            <input type="hidden" name="type" value="add">
+            <div class="layui-form-item">
+                <label class="layui-form-label">金额:</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="card_price" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">生成数量:</label>
+                <div class="layui-input-inline">
+                    <input type="number" name="num" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button type="submit" class="layui-btn">一键新增</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</block>
+<block name="js">
+    <script>
+        layui.use(['form', 'layer', 'laydate'], function(){
+            var $ = layui.jquery,form = layui.form,layer = layui.layer;
+            var laydate = layui.laydate;
+            $("#add").click(function () {
+                layer.open({
+                    type: 1
+                    , title: '添加菜单'
+                    , content: $('#add_html')
+                    , area: ['25%', '240px']
+                    , shade: 0 //不显示遮罩
+                    , yes: function () {
+                        layer.closeAll();
+                    }
+                });
+            })
+            //常规用法
+            laydate.render({
+                elem: '#start_time'
+            });
+            laydate.render({
+                elem: '#end_time'
+
+            });
+
+        });
+    </script>
+</block>

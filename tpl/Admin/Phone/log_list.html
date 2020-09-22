@@ -1,0 +1,172 @@
+<extend name="Public:base_new"/>
+<block name="title">账户列表</block>
+<block name="content">
+    <span class="layui-breadcrumb">
+        <a href="/">首页</a>
+        <a><cite>号码管理</cite></a>
+        <a><cite>号码列表</cite></a>
+    </span>
+    <table class="layui-table" id="test">
+        <thead>
+        <tr>
+            <th colspan="9">
+                <style>
+                    .layui-form-item {
+                        margin-left: -30px;
+                        margin-bottom: 0;
+                    }
+                    .layui-form-item .layui-inline {
+                        margin-bottom: 5px;
+                        margin-right: 0px;
+                    }
+                    .current{
+                        background-color: #009688!important;
+                    }
+
+                </style>
+                <form class="layui-form" action="">
+                    <div class="layui-form-item">
+                        <div class="layui-inline">
+                            <label class="layui-form-label">对方号码</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="dial_phone" class="layui-input" value="{$dial_phone}">
+                            </div>
+                        </div>
+                        <div class="layui-inline" style="margin-left:0;">
+                            <div class="layui-input-inline">
+
+                                <select name="type"  lay-search="">
+                                    <option value="3">类型</option>
+                                    <option value="1" <if condition="$type eq 1">selected</if>>呼出</option>
+                                    <option value="2" <if condition="$type eq 2">selected</if>>呼入</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="layui-inline" style="margin-left:0;">
+                            <div class="layui-input-inline">
+                                <select name="is_answer"  lay-search="">
+                                    <option value="3">是否接听</option>
+                                    <option value="1" <if condition="$is_answer  eq  1">selected</if>>接通</option>
+                                    <option value="2" <if condition="$is_answer  eq  2">selected</if>>未接通</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <button type="submit" class="layui-btn ">搜索</button>
+                        </div>
+                    </div>
+                </form>
+                <a href="{:U('Admin/Phone/excel',array('type'=>'3','id'=>$id))}" class="layui-btn layui-btn-sm">一键导出</a>
+            </th>
+        </tr>
+        </thead>
+        <thead>
+            <tr>
+            <td>
+                <input type="checkbox" id="selectAll" lay-skin="primary">
+            </td>
+            <th>机主id</th>
+            <th>对方号码</th>
+            <th>拨打时间</th>
+            <th>类型</th>
+            <th>是否接听</th>
+            <th>时长</th>
+        </tr>
+        </thead>
+        <tbody id="checks">
+        <foreach name="data" item="v">
+            <tr>
+                <td>
+                    <input type="checkbox" name="check" lay-skin="primary" value="{$v['id']}">
+                </td>
+                <td>{$v['id']}</td>
+                <td>{$v['dial_phone']}</td>
+                <td>{$v['dial_time']}</td>
+                <td>
+                    <if condition="$v['type'] eq 1">
+                        呼出
+                        <else />
+                        呼入
+                    </if>
+                </td>
+                <td>
+                    <if condition="$v['is_answer'] eq 1">
+                        接通
+                        <else />
+                        未接通
+                    </if>
+                </td>
+                <td>{$v['time_length']}</td>
+            </tr>
+        </foreach>
+        </tbody>
+    </table>
+
+    <div class="layui-box layui-laypage layui-laypage-default">{$page}</div>
+</block>
+<block name="js">
+    <script>
+        layui.use(['layer', 'form'], function() { //独立版的layer无需执行这一句
+            var $ = layui.jquery, layer = layui.layer;
+            var i=0;
+            //全选
+            $("#selectAll").on("click",function(){
+                if(i==0){
+                    //把所有复选框选中
+                    $("#test td :checkbox").prop("checked", true);
+                    i=1;
+                }else{
+                    $("#test td :checkbox").prop("checked", false);
+                    i=0;
+                }
+
+            });
+            $("#del_btn").on("click",function(){
+                var arr=new Array();
+                $('#checks input:checkbox[name=check]:checked').each(function(i){
+                    arr[i] = $(this).val();
+                });
+                var vals = arr.join(",");
+                $.ajax("/index.php/Api/Ticket/phone_save",{
+                    type:"post",
+                    dataType: "json",
+                    data:{"delId":vals},
+                    success:function(data){
+
+                        layer.msg(data.msg);
+                        setTimeout(function(){
+                            location.reload();
+                        }, 1000);
+                    }
+                });
+            })
+            $('#import').change(function () {
+                $('.loading').show();
+                var formData = new FormData();
+                formData.append('excel', this.files[0]);
+                $.ajax({
+                    url: '/Admin/Phone/excel',
+                    type: 'post',
+                    data: formData,
+                    dataType: 'json',
+                    processData: false,
+                    contentType: false,
+                    success(res) {
+                        $('.loading').hide();
+                        if (res.code == 1) {
+                            layer.msg(res.msg);
+                            setTimeout(function(){
+                                location.reload();
+                            }, 3000);
+                        } else {
+                            layer.msg(res.msg);
+                            setTimeout(function(){
+                                location.reload();
+                            }, 3000);
+                        }
+                    }
+                });
+            });
+        })
+    </script>
+</block>

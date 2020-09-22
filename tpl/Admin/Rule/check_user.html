@@ -1,0 +1,52 @@
+<extend name="Public:base_new"/>
+<block name="title">用户组添加用户</block>
+<block name="content">
+    <span class="layui-breadcrumb">
+        <a href="/">首页</a>
+        <a><cite>用户组列表</cite></a>
+        <a><cite>用户组添加用户</cite></a>
+    </span>
+
+    <table class="layui-table">
+        <colgroup>
+            <col width="450">
+            <col width="650">
+        </colgroup>
+        <thead>
+        <tr>
+            <th colspan="4">
+                <form action="">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">搜索用户名:</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="username" value="{$Think.get.username}" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-input-inline">
+                            <input class="layui-btn" type="submit" value="搜索">
+                        </div>
+                    </div>
+                </form>
+            </th>
+        </tr>
+        </thead>
+        <thead>
+        <tr>
+            <th>用户名</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <foreach name="user_data" item="v">
+            <tr>
+                <th>{$v['username']}</th>
+                <td>
+                    <if condition="in_array($v['id'],$uids)"> <span class="layui-btn layui-btn-xs layui-btn-warm">已经是{$group_name}</span>
+                        <else/>
+                        <a style="margin-left: 10px" class="layui-btn layui-btn-xs" href="{:U('Admin/Rule/add_user_to_group',array('uid'=>$v['id'],'group_id'=>$_GET['group_id'],'username'=>$_GET['username']))}">设为{$group_name}</a>
+                    </if>
+                </td>
+            </tr>
+        </foreach>
+        </tbody>
+    </table>
+</block>
